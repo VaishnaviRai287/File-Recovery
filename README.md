@@ -491,4 +491,4 @@ This tool is designed around **NIST SP 800-86** and **ACPO Good Practice Guide**
 
 ## License
 
-Educational / Portfolio use. Built as a flagship DFIR demonstration project.
+Portfolio use. Built as a flagship DFIR demonstration project.
