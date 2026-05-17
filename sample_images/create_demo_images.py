@@ -193,5 +193,5 @@ if __name__ == "__main__":
     create_ntfs_image()
     create_ext4_image()
     create_xfs_image()
-    print("\n[✓] All sample images created in sample_images/")
+    print("\n[OK] All sample images created in sample_images/")
     print("    Use these with: python main.py scan --image sample_images/ntfs_demo.dd ...")

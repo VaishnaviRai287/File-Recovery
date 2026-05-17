@@ -76,7 +76,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
     print_banner()
 
     if RICH_AVAILABLE:
-        console.print(f"\n[bold green]► Starting Investigation[/bold green]")
+        console.print(f"\n[bold green]> Starting Investigation[/bold green]")
         console.print(f"  Case ID:   [cyan]{args.case_id}[/cyan]")
         console.print(f"  Examiner:  [cyan]{args.examiner}[/cyan]")
         console.print(f"  Image:     [yellow]{args.image}[/yellow]")
@@ -101,7 +101,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
         )
     except Exception as e:
         if RICH_AVAILABLE:
-            console.print(f"\n[bold red]✗ Investigation failed:[/bold red] {e}")
+            console.print(f"\n[bold red]x Investigation failed:[/bold red] {e}")
         else:
             print(f"[ERROR] Investigation failed: {e}")
         return 1
@@ -116,7 +116,7 @@ def cmd_scan(args: argparse.Namespace) -> int:
         paths = reporter.generate(result, formats)
 
         if RICH_AVAILABLE:
-            console.print("\n[bold green]► Reports Generated:[/bold green]")
+            console.print("\n[bold green]> Reports Generated:[/bold green]")
             for fmt, path in paths.items():
                 console.print(f"  [{fmt.upper()}] {path}")
         else:
@@ -133,14 +133,14 @@ def cmd_verify(args: argparse.Namespace) -> int:
     print_banner()
 
     if RICH_AVAILABLE:
-        console.print(f"\n[bold yellow]► Verifying Image Integrity[/bold yellow]")
+        console.print(f"\n[bold yellow]> Verifying Image Integrity[/bold yellow]")
         console.print(f"  Image: [cyan]{args.image}[/cyan]\n")
 
     try:
         with ForensicImageReader(args.image) as reader:
             info = reader.get_info()
             if RICH_AVAILABLE:
-                console.print(f"  [green]✓[/green] Image opened successfully")
+                console.print(f"  [green]+[/green] Image opened successfully")
                 console.print(f"  Format:   {info['format']}")
                 console.print(f"  Size:     {info['size_gb']:.4f} GB ({info['size_bytes']:,} bytes)")
                 console.print(f"  SHA256:   {info['opening_sha256']}")
@@ -153,9 +153,9 @@ def cmd_verify(args: argparse.Namespace) -> int:
                 is_ok, opening, current = reader.verify_integrity()
                 if RICH_AVAILABLE:
                     if is_ok:
-                        console.print(f"\n  [bold green]✓ INTEGRITY VERIFIED — Hash unchanged[/bold green]")
+                        console.print(f"\n  [bold green]+ INTEGRITY VERIFIED — Hash unchanged[/bold green]")
                     else:
-                        console.print(f"\n  [bold red]✗ INTEGRITY VIOLATION — Hash changed![/bold red]")
+                        console.print(f"\n  [bold red]x INTEGRITY VIOLATION — Hash changed![/bold red]")
                         console.print(f"    Opening: {opening}")
                         console.print(f"    Current: {current}")
                 else:
@@ -167,7 +167,7 @@ def cmd_verify(args: argparse.Namespace) -> int:
 
     except Exception as e:
         if RICH_AVAILABLE:
-            console.print(f"\n[red]✗ Error: {e}[/red]")
+            console.print(f"\n[red]x Error: {e}[/red]")
         else:
             print(f"[ERROR] {e}")
         return 1
@@ -208,7 +208,7 @@ def cmd_info(args: argparse.Namespace) -> int:
 def _print_summary(result) -> None:
     """Print a formatted investigation summary."""
     if RICH_AVAILABLE:
-        console.print(f"\n[bold green]═══ Investigation Complete ═══[/bold green]")
+        console.print(f"\n[bold green]=== Investigation Complete ===[/bold green]")
 
         table = Table(show_header=False, box=None, padding=(0, 2))
         table.add_column("Key", style="cyan", width=25)
@@ -231,7 +231,7 @@ def _print_summary(result) -> None:
                 m = art.metadata
                 name = m.filename or f"{m.filesystem_type}:inode:{m.identifier}"
                 console.print(
-                    f"  [green]✓[/green] {name} "
+                    f"  [green]+[/green] {name} "
                     f"[dim]({m.size_bytes:,} bytes, {m.recovery_confidence} confidence)[/dim]"
                 )
     else:

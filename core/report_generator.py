@@ -271,7 +271,7 @@ class ReportGenerator:
             v = art.validation
             conf_class = f"confidence-{m.recovery_confidence}"
             rec_class = "recovered-yes" if art.recovered else "recovered-no"
-            rec_text = "✓ YES" if art.recovered else "✗ NO"
+            rec_text = "YES" if art.recovered else "NO"
             rows.append(
                 f"<tr>"
                 f"<td>{i}</td>"

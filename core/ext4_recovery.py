@@ -114,7 +114,7 @@ class EXT4RecoveryEngine:
             sha256 = HashVerifier.hash_bytes(data)
             logger.info(
                 f"EXT4 recovered inode {record.inode_number}: "
-                f"{len(data)} bytes → {out_path.name}"
+                f"{len(data)} bytes -> {out_path.name}"
             )
             return EXT4RecoveryResult(
                 record=record, recovered=True,

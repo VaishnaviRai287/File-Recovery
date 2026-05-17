@@ -113,7 +113,7 @@ class RecoveryEngine:
         start_time = time.perf_counter()
         start_ts = datetime.now(timezone.utc).isoformat()
 
-        logger.info(f"═══ Investigation started: {image_path} ═══")
+        logger.info(f"=== Investigation started: {image_path} ===")
 
         with ForensicImageReader(image_path) as reader:
             # Step 1: Register evidence
@@ -176,7 +176,7 @@ class RecoveryEngine:
         )
 
         logger.info(
-            f"═══ Investigation complete ═══\n"
+            f"=== Investigation complete ===\n"
             f"    Deleted found:  {result.total_deleted_found}\n"
             f"    Recovered:      {result.total_recovered}\n"
             f"    Recovery rate:  {result.recovery_rate:.1%}\n"

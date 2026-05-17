@@ -415,7 +415,7 @@ class ResultsTab(QWidget):
                 f"{m.size_bytes:,}",
                 m.modified.strftime("%Y-%m-%d %H:%M") if m.modified else "—",
                 m.mime_type, m.recovery_confidence,
-                "✓ YES" if art.recovered else "✗ NO",
+                "YES" if art.recovered else "NO",
                 art.sha256[:16] + "…" if art.sha256 else "—",
             ]
             for col, val in enumerate(cells):
@@ -573,7 +573,7 @@ class MainWindow(QMainWindow):
         self.timeline_tab.load_timeline(result.timeline)
         self.tabs.setCurrentWidget(self.results_tab)
         self.status.showMessage(
-            f"✓ Complete — {result.total_recovered}/{result.total_deleted_found} files recovered "
+            f"Complete — {result.total_recovered}/{result.total_deleted_found} files recovered "
             f"({result.duration_seconds:.1f}s)"
         )
         self.log_tab.append(
@@ -594,7 +594,7 @@ class MainWindow(QMainWindow):
     def _on_investigation_error(self, error_msg: str):
         self.progress_bar.setVisible(False)
         self.evidence_tab.scan_btn.setEnabled(True)
-        self.status.showMessage(f"✗ Error: {error_msg}")
+        self.status.showMessage(f"Error: {error_msg}")
         self.log_tab.append(f"ERROR: {error_msg}")
         QMessageBox.critical(self, "Investigation Error", error_msg)
 
