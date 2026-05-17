@@ -1,0 +1,8 @@
+PyQt6>=6.4.0
+rich>=13.0.0
+pytest>=7.4.0
+pytest-cov>=4.1.0
+# Optional: pyewf for E01 image support (requires libewf)
+# pyewf
+# Optional: pytsk3 for advanced filesystem access (requires The Sleuth Kit)
+# pytsk3
